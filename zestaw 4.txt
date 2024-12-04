@@ -11,7 +11,7 @@ zad 2
  
 select rodzaj, sum(waga) as waga_calkowita from zasob group by rodzaj;
 
-select nazwa, avg(waga) as srednia_waga from zasob where ilosc >= 4 group by nazwa having sum(waga) > 10;
+SELECT nazwa, sum(waga * ilosc) / SUM(ilosc) AS srednia_waga FROM zasob where ilosc >= 4 GROUP BY nazwa HAVING SUM(waga * ilosc) > 10;
 
 select distinct(nazwa) from zasob group by nazwa having sum(ilosc) > 1;
  
@@ -41,3 +41,4 @@ zad 5
 select k.rodzaj, avg(z.waga) as srednia_waga  from ekwipunek as e inner join kreatura as k on e.idKreatury=k.idKreatury inner join zasob as z on e.idZasobu = z.idZasobu where k.rodzaj not like 'malpa' and k.rodzaj not like 'waz' and e.ilosc < 30 group by k.rodzaj;
 
  
+
